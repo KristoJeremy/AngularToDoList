@@ -27,6 +27,8 @@ export class HomeComponent {
   totalTodo: number = 0;
   newTodo: Partial<Todo> = {};
   successMessage: string = '';
+  loading: boolean = false;
+
 
   // Fetch function
   fetchTodo() {
@@ -36,9 +38,11 @@ export class HomeComponent {
         next: (data: Todos) => {
           this.todos = data;
           this.totalTodo = data.length;
+          this.loading = false;
           console.log(this.totalTodo)
         },
         error: (error) => {
+          this.loading = false;
           console.log(error);
         },
       })
@@ -63,6 +67,9 @@ export class HomeComponent {
       },
       error: (error) => {
         console.log(error);
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
 }
