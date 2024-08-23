@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <h2 class="text-center">Todo List by Kristo Jeremy</h2>
+  <h4 class="text-center mb-4">Doku Take Home Assignment: Angular Todo List</h4>
+
+  <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+    <div class="form-group">
+      <label for="title" class="mb-2">Task</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control mb-2"
+        [(ngModel)]="newTodo.title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="description" class="mb-2">Description</label>
+      <textarea
+        id="description"
+        class="form-control mb-2"
+        [(ngModel)]="newTodo.description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Task</button>
+  </form>
+
+  <div *ngIf="successMessage" class="alert alert-success mt-2">
+    {{ successMessage }}
+  </div>
+
+  <table class="table table-bordered table-striped mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>Task</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
